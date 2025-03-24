@@ -1,5 +1,5 @@
 import { Viewer, Entity, CameraFlyTo } from "resium";
-import { Cartesian3, VerticalOrigin, HorizontalOrigin, Color } from "cesium";
+import { Cartesian3, VerticalOrigin, HorizontalOrigin } from "cesium";
 import { useEffect, useMemo, useState } from "react";
 import { useMqtt } from "./hooks/useMQtt";
 import { Track } from "./types";
@@ -7,8 +7,8 @@ import { Track } from "./types";
 function App() {
   const channelPosition = "/v2.C/droneinfo";
   const [track, setTrack] = useState<Track>({});
-  const [cameraPosition, setCameraPosition] = useState<Cartesian3>(Cartesian3.fromDegrees(0, 0, 1000));
-  const [airplanePosition, setAirplanePosition] = useState<Cartesian3>(Cartesian3.fromDegrees(0, 0, 1000));
+  const [cameraPosition, setCameraPosition] = useState<Cartesian3>(Cartesian3.fromDegrees(135.5023, 34.6937, 1000));
+  const [airplanePosition, setAirplanePosition] = useState<Cartesian3>(Cartesian3.fromDegrees(135.5023, 34.6937, 10));
 
   const memoizedOptions = useMemo(() => ({
     clientId: `mqtt_${Math.random().toString(16).slice(2)}`,
