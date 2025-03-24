@@ -7,8 +7,8 @@ import { Track } from "./types";
 function App() {
   const channelPosition = "/v2.C/droneinfo";
   const [track, setTrack] = useState<Track>({});
-  const [cameraPosition, setCameraPosition] = useState<Cartesian3>(Cartesian3.fromDegrees(13.26315213973982, 49.1637759728459, 1000));
-  const [airplanePosition, setAirplanePosition] = useState<Cartesian3>(Cartesian3.fromDegrees(13.26315213973982, 49.1637759728459, 1000));
+  const [cameraPosition, setCameraPosition] = useState<Cartesian3>(Cartesian3.fromDegrees(0, 0, 1000));
+  const [airplanePosition, setAirplanePosition] = useState<Cartesian3>(Cartesian3.fromDegrees(0, 0, 1000));
 
   const memoizedOptions = useMemo(() => ({
     clientId: `mqtt_${Math.random().toString(16).slice(2)}`,
@@ -48,7 +48,7 @@ function App() {
         const {fromName, latitude, longitude, elevation} = processCSV(csvData);
 
         const newPosition = Cartesian3.fromDegrees(longitude, latitude, elevation);
-        const newCameraPosition = Cartesian3.fromDegrees(longitude, latitude, 100);
+        const newCameraPosition = Cartesian3.fromDegrees(longitude, latitude, 500);
 
         const positions = track[fromName];
         if(positions) {
@@ -80,12 +80,12 @@ function App() {
       <CameraFlyTo destination={cameraPosition} duration={2} />
 
       {/* Polyline Showing Path */}
-      {
+      {/* {
         Object.keys(track).map(fromName => {
             const positions = track[fromName]
             return <Entity polyline={{ positions, width: 3, material: Color.RED }} />
         })
-      }
+      } */}
 
       {/* Draw circles at each position */}
       {/* {
